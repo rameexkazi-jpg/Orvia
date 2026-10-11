@@ -12,7 +12,8 @@ const CAN_OVERWRITE: Record<string, string[]> = {
 };
 
 export class SupabaseStore implements Store {
-  constructor(private url: string, private key: string, private f: typeof fetch = fetch) {}
+  // Wrapped on purpose: calling the global fetch as a method (this.f(...)) throws "Illegal invocation" on Workers.
+  constructor(private url: string, private key: string, private f: typeof fetch = (input, init) => fetch(input, init)) {}
 
   private async req<T>(method: string, path: string, body?: unknown, prefer?: string): Promise<T> {
     // UNVERIFIED: new "sb_secret_" keys go in the apikey header only; legacy JWT keys also go in Authorization.
