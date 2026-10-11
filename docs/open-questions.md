@@ -26,3 +26,8 @@ Items marked UNVERIFIED were not confirmed in docs I could read. Check each befo
 - **Status before send response.** A `sent` or `delivered` status webhook could arrive before the send response is stored. The row has no `wa_message_id` yet, so that status update changes nothing. The later `read` status still lands. A cheap fix is to look up by `reply_to_wa_message_id` too. Not done in slice 1.
 - **Lost send response.** If Meta accepts a send but the response is lost, the retry sends a second reply. The Cloud API has no idempotency key that I know of (UNVERIFIED).
 - **Fixed reply text.** Slice 1 replies with a fixed English test message. Language matching comes in slice 3.
+
+## Before selling Orvia
+
+- **Move the Worker to its own Cloudflare account.** It currently runs on the account whose workers.dev subdomain carries a client's name (`horizon-infrastructure-engineering-pllc`). Decision on 2026-10-12: keep it until Orvia is ready to sell. Moving means a new workers.dev subdomain, re-setting the four secrets, and updating the callback URL in Meta.
+- Rotate the temporary Meta access token (it was pasted in chat) and switch to a system user token.
