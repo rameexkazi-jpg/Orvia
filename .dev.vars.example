@@ -1,0 +1,5 @@
+# Copy to .dev.vars for `wrangler dev`. Names only here.
+WHATSAPP_APP_SECRET=
+WHATSAPP_VERIFY_TOKEN=
+WHATSAPP_ACCESS_TOKEN=
+SUPABASE_SECRET_KEY=

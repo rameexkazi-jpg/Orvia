@@ -1,0 +1,15 @@
+{
+  "name": "orvia-webhook",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  // Secrets (WHATSAPP_APP_SECRET, WHATSAPP_VERIFY_TOKEN, WHATSAPP_ACCESS_TOKEN,
+  // SUPABASE_SECRET_KEY) are set with `wrangler secret put`, never here.
+  "vars": {
+    "APP_NAME": "Orvia",
+    // Source: Meta Graph API versions page (v26.0 released 2026-07-29). See docs/open-questions.md.
+    "GRAPH_API_VERSION": "v26.0",
+    "SUPABASE_URL": "https://mqzkavhwsvbmmcfvuymv.supabase.co"
+  },
+  // Retries failed sends. Free plan allows 5 cron triggers per account.
+  "triggers": { "crons": ["* * * * *"] }
+}
